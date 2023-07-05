@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <strong>Reveiw Decomposer</strong>
+        </a>
+      </div>
+    </div>
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Review Decomposer Application</h1>
+          <br>
+          <p class="lead text-muted">
+          Review Decomposer 어플리케이션 메인 페이지에 온 것을 환영합니다
+          <br>
+          영화 제목을 입력하면 리뷰를 감정분석하여 평점을 여러가지 요소로 분해하여 제공합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="py-5 text-center container">
+      
+      <div class="jumbotron">
+      <form action="{{url_for('movie.get_movie')}}">
+      <label for="first">Movie title : </label>
+      <input type="text" name="movie_title">
+
+      <input class="btn btn-primary" type="submit" value="Submit Form">
+      </form>
+      </div>
+
+
+
+      {% if score %}
+        <div>
+          <h1 class="fw-light">{{info["full_title"]}}</h1>
+          <li>Origianl: {{score["Average"]}}</li>
+          <li>HateSpeech:{{score["HateSpeech"]}} Count:{{score["HateSpeechnum"]}}</li>
+          <li>Offensive:{{score["Offensive"]}} Count:{{score["Offensivenum"]}}</li>  
+          <li>Pure:{{score["Pure"]}} Count:{{score["Purenum"]}}</li>
+        </div>    
+      {% endif %}
+
+
+      {% if info %}
+        <div>
+          <h1 class="fw-light">info</h1>
+          <li>Synopsis: {{info["synopsis"]}}</li>
+          <li>tomatometerscore:{{info["tomatometerscore"]}}</li>
+          <li>audiencescore:{{info["audiencescore"]}}</li>  
+          <li>genre:{{info["genre"]}}</li>
+          <li>director: {{info["director"]}}</li>
+          <li>writer:{{info["writer"]}}</li>
+          <li>theater_date:{{info["theater_date"]}}</li>  
+          <li>dvd_date:{{info["dvd_date"]}}</li>
+          <li>box_office: {{info["box_office"]}}</li>
+          <li>runtime:{{info["runtime"]}}</li>
+          <li>studio:{{info["studio"]}}</li>  
+          <li>Collection:{{info["Collection"]}}</li>
+        </div>    
+      {% endif %}
+
+
+    </section>
+  </body>
+</html>
